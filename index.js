@@ -12,7 +12,7 @@ const blogSchema = mongoose.Schema({
 })
 
 const Blog = mongoose.model('Blog', blogSchema)
-const password = 'lollero'
+const password = ''
 const mongoUrl = `mongodb+srv://pietarip:${password}@bloglist.ldp7gq0.mongodb.net/?retryWrites=true&w=majority`
 mongoose.connect(mongoUrl)
 
