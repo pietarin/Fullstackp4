@@ -21,36 +21,68 @@ const mostBlogs = (blogs) => {
     const authors = []
 
     blogs.forEach(blog => {
-      if (!authors.includes(blog.author)) {
-        authors.push(blog.author)
-      }
-    })
-  
-    const authorsBlogs = authors.map(author => {
-      let amountOfblogs = 0
-      blogs.forEach(blog => {
-        if (blog.author === author) {
-          amountOfblogs++
+        if (!authors.includes(blog.author)) {
+            authors.push(blog.author)
         }
-      })
-  
-      return { blogger: author, amountOfblogs }
     })
-  
+
+    const authorsBlogs = authors.map(author => {
+        let amountOfblogs = 0
+        blogs.forEach(blog => {
+            if (blog.author === author) {
+                amountOfblogs++
+            }
+        })
+
+        return { author: author, amountOfblogs }
+    })
+
     let mostBlogsAuthor = authorsBlogs[0]
     authorsBlogs.forEach(author => {
-      if (author.amountOfblogs > mostBlogsAuthor.amountOfblogs) {
-        mostBlogsAuthor = author
-      }
+        if (author.amountOfblogs > mostBlogsAuthor.amountOfblogs) {
+            mostBlogsAuthor = author
+        }
     })
-  
+
     return {
-      author: mostBlogsAuthor.author,
-      blogs: mostBlogsAuthor.amountOfblogs
+        author: mostBlogsAuthor.author,
+        blogs: mostBlogsAuthor.amountOfblogs
     }
-  }
-  
+}
+
+const mostLikes = (blogs) => {
+    let authors = []
+
+    blogs.forEach(blog => {
+        if (!authors.includes(blog.author)) {
+            authors.push(blog.author)
+        }
+    })
+
+    let authorsLikes = authors.map(author => {
+        let amountOfLikes = 0
+        blogs.forEach(blog => {
+            if (blog.author === author) {
+                amountOfLikes + blog.likes
+            }
+        })
+        return { author: author, amountOfLikes }
+    })
+
+    let mostLikesAuthor = authorsLikes[0]
+    authorsLikes.forEach(author => {
+        if (author.amountOfblogs > mostLikesAuthor.amountOfLikes) {
+            mostLikesAuthor = author
+        }
+    })
+
+    return {
+        author: mostLikesAuthor.author,
+        likes: mostLikesAuthor.amountOfblogs
+    }
+}
+
 
 module.exports = {
-    dummy, totalLikes, favoriteBlog, mostBlogs
+    dummy, totalLikes, favoriteBlog, mostBlogs, mostLikes
 }
