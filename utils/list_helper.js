@@ -17,6 +17,40 @@ const favoriteBlog = (blogs) => {
     return blogs.find(blog => blog.likes === mostLikes)
 }
 
+const mostBlogs = (blogs) => {
+    const authors = []
+
+    blogs.forEach(blog => {
+      if (!authors.includes(blog.author)) {
+        authors.push(blog.author)
+      }
+    })
+  
+    const authorsBlogs = authors.map(author => {
+      let amountOfblogs = 0
+      blogs.forEach(blog => {
+        if (blog.author === author) {
+          amountOfblogs++
+        }
+      })
+  
+      return { blogger: author, amountOfblogs }
+    })
+  
+    let mostBlogsAuthor = authorsBlogs[0]
+    authorsBlogs.forEach(author => {
+      if (author.amountOfblogs > mostBlogsAuthor.amountOfblogs) {
+        mostBlogsAuthor = author
+      }
+    })
+  
+    return {
+      author: mostBlogsAuthor.author,
+      blogs: mostBlogsAuthor.amountOfblogs
+    }
+  }
+  
+
 module.exports = {
-    dummy, totalLikes, favoriteBlog
+    dummy, totalLikes, favoriteBlog, mostBlogs
 }
